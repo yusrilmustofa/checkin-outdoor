@@ -44,6 +44,7 @@ interface CartState {
   orders: Order[];
   totalItems: number;
   totalPrice: number;
+  recentlyAdded: Product | null;
 }
 
 type CartAction =
@@ -55,13 +56,15 @@ type CartAction =
   | { type: 'LOAD_CART'; payload: CartItem[] }
   | { type: 'ADD_ORDER'; payload: Order }
   | { type: 'LOAD_ORDERS'; payload: Order[] }
-  | { type: 'UPDATE_ORDER_STATUS'; payload: { orderId: string; status: Order['status'] } };
+  | { type: 'UPDATE_ORDER_STATUS'; payload: { orderId: string; status: Order['status'] } }
+  | { type: 'SET_RECENTLY_ADDED'; payload: Product | null };
 
 const initialState: CartState = {
   items: [],
   orders: [],
   totalItems: 0,
   totalPrice: 0,
+  recentlyAdded: null,
 };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
@@ -86,6 +89,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         items: newItems,
         totalItems: newItems.reduce((sum, item) => sum + item.quantity, 0),
         totalPrice: newItems.reduce((sum, item) => sum + (item.price * item.quantity * item.rentalDays), 0),
+        recentlyAdded: product,
       };
     }
 
@@ -168,6 +172,12 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         ),
       };
 
+    case 'SET_RECENTLY_ADDED':
+      return {
+        ...state,
+        recentlyAdded: action.payload,
+      };
+
     default:
       return state;
   }
@@ -182,6 +192,8 @@ interface CartContextType {
   clearCart: () => void;
   addOrder: (order: Order) => void;
   updateOrderStatus: (orderId: string, status: Order['status']) => void;
+  recentlyAdded: Product | null;
+  clearRecentlyAdded: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -264,6 +276,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     dispatch({ type: 'UPDATE_ORDER_STATUS', payload: { orderId, status } });
   };
 
+  const clearRecentlyAdded = () => {
+    dispatch({ type: 'SET_RECENTLY_ADDED', payload: null });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -275,6 +291,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         clearCart,
         addOrder,
         updateOrderStatus,
+        recentlyAdded: state.recentlyAdded,
+        clearRecentlyAdded,
       }}
     >
       {children}

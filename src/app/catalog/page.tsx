@@ -34,7 +34,7 @@ export default function Catalog() {
     { id: 21, name: 'Tripod Bluetooth', category: 'Semua', price: 10000, rating: 4.7, desc: 'Tripod Bluetooth', image: '/products/tripod.jpg' },
     { id: 22, name: 'Meja Lipat', category: 'Semua', price: 15000, rating: 4.7, desc: 'Meja Lipat dengan desain modern', image: '/products/meja.jpg' },
     { id: 23, name: 'Kursi Lipat', category: 'Semua', price: 8000, rating: 4.7, desc: 'Kursi Lipat dengan desain modern', image: '/products/kursi.jpg' },
-    { id: 24, name: 'Headlamp Baterai', category: 'Penerangan', price: 8000, rating: 4.7, desc: 'Kursi Lipat dengan desain modern', image: '/products/lamp-baterai.jpg' },
+    { id: 24, name: 'Headlamp Baterai', category: 'Penerangan', price: 8000, rating: 4.7, desc: 'Headlamp Baterai', image: '/products/lamp-baterai.jpg' },
   ];
 
   const categories = ['Semua', 'Tenda', 'Alat Tidur', 'Tas', 'Memasak', 'Penerangan'];

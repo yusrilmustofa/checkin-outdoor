@@ -79,6 +79,26 @@ export default function packages() {
       image: "/products/tenda 4.jpg",
       popular: true,
     },
+    {
+      id: 7,
+      name: "Paket Pendakian 1",
+      desc: "Paket Pendakian dengan Tenda dan Perlengkapan",
+      price: 100000,
+      duration: "1 hari",
+      items: ["Tenda cap 2 DL ", "Sleeping Bag 2", "Matras 2", "Lampu Tenda 1","Tas Carrier 60L 2","1 Set Alat Makan"],
+      image: "/products/tenda 4.jpg",
+      popular: true,
+    },
+    {
+      id: 8,
+      name: "Paket Pendakian 2",
+      desc: "Paket Pendakian dengan Tenda dan Perlengkapan",
+      price: 135000,
+      duration: "1 hari",
+      items: ["Tenda cap 4 DL ", "Sleeping Bag 4", "Matras 3", "Lampu Tenda 1","Tas Carrier 60L 3","1 Set Alat Makan"],
+      image: "/products/tenda 4.jpg",
+      popular: true,
+    }
   ];
 
   const handleAddPackageToCart = (pkg: any) => {
